@@ -1,9 +1,8 @@
-import { Contorller } from "../abstract/Contorller";
 import { Request, Response } from "express";
-import { logger } from "../middlewares/log";
+import { Contorller } from "../abstract/Contorller";
 import { Service } from "../abstract/Service";
-import { PageService } from "../Service/PageService";
 import { DB } from "../app";
+import { PageService } from "../Service/PageService";
 require('dotenv').config()
 
 export class ReservationsController extends Contorller {
@@ -15,8 +14,16 @@ export class ReservationsController extends Contorller {
     }
 
     public async test(Request: Request, Response: Response) {
-        await DB.connection?.query("USE lab_b310;");
-        const resp = await DB.connection?.query("SELECT * FROM Reservations;");
-        Response.send(resp)
+        try {
+            await DB.connection?.query("USE lab_b310;");
+    
+            const resp = await DB.connection?.query("SELECT reservation_id, student_id, seat_id, timeslot_id, create_time FROM Reservations;");
+            Response.send(resp)
+    
+        } catch (error) {
+            console.error('Database query error:', error);
+            Response.status(500).send({ error: 'Database query failed' });
+        }
+    
     }
 }
