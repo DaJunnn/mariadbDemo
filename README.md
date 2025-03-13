@@ -22,6 +22,7 @@ npm install
 npm run dev
 npm run build
 npm run start
+```bash
 
 #### 設定環境變數
 
