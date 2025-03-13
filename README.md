@@ -11,7 +11,7 @@
 - MariaDB
 - dotenv
 - DBeaver EE
-- Postman（
+- Postman
 
 ---
 
