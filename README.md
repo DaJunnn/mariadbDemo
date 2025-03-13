@@ -23,6 +23,10 @@ npm run dev
 npm run build
 npm run start
 
+
+---
+
+
 #### 設定環境變數
 
 DB_HOST=localhost
